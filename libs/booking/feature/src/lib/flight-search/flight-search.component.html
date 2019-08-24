@@ -1,0 +1,65 @@
+<div class="card">
+
+  <div class="header">
+    <h2 class="title">Flight Search</h2>
+  </div>
+  <div class="content">
+
+    <form>
+
+      <div class="form-group">
+        <label>From:</label>
+        <input [(ngModel)]="from" name="from" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>To:</label>
+        <input [(ngModel)]="to" name="to" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          <input [(ngModel)]="urgent" name="urgent" type="checkbox">
+          Urgent (When it's urgent it fails -- like in real life ;-))
+
+        </label>
+      </div>
+
+      <div class="form-group">
+        <button (click)="search()" [disabled]="!from || !to"
+          class="btn btn-default">
+          Search
+        </button>
+
+        <ng-container *ngIf="flights$ | async as flights">
+          <button *ngIf="flights.length > 0" class="btn btn-default"
+            (click)="delay()">
+            Delay 1st Flight
+          </button>
+
+          <div *ngIf="flights.length > 0">
+            {{flights.length}} flights found!
+          </div>
+        </ng-container>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="row">
+  <div *ngFor="let f of flights$ | async">
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <flight-card
+        [item]="f"
+        [(selected)]="basket[f.id]">
+      </flight-card>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="content">
+    <pre>{{ basket | json }}</pre>
+  </div>
+</div>

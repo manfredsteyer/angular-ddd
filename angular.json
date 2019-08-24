@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "projects": {
+    "flight-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/flight-app",
+      "sourceRoot": "apps/flight-app/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/flight-app",
+            "index": "apps/flight-app/src/index.html",
+            "main": "apps/flight-app/src/main.ts",
+            "polyfills": "apps/flight-app/src/polyfills.ts",
+            "tsConfig": "apps/flight-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/flight-app/src/favicon.ico",
+              "apps/flight-app/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "apps/flight-app/src/styles.css",
+              "apps/flight-app/src/assets/css/paper-dashboard.css",
+              "apps/flight-app/src/assets/css/demo.css",
+              "apps/flight-app/src/assets/css/themify-icons.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/flight-app/src/environments/environment.ts",
+                  "with": "apps/flight-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "flight-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "flight-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "flight-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/flight-app/tsconfig.app.json",
+              "apps/flight-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/flight-app/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/flight-app/jest.config.js",
+            "tsConfig": "apps/flight-app/tsconfig.spec.json",
+            "setupFile": "apps/flight-app/src/test-setup.ts",
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+            ]
+          }
+        }
+      }
+    },
+    "flight-app-e2e": {
+      "root": "apps/flight-app-e2e",
+      "sourceRoot": "apps/flight-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/flight-app-e2e/cypress.json",
+            "tsConfig": "apps/flight-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "flight-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "flight-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/flight-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/flight-app-e2e/**"]
+          }
+        }
+      }
+    },
+    "booking-feature": {
+      "projectType": "library",
+      "root": "libs/booking/feature",
+      "sourceRoot": "libs/booking/feature/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/booking/feature/tsconfig.lib.json",
+              "libs/booking/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/booking/feature/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/booking/feature/jest.config.js",
+            "tsConfig": "libs/booking/feature/tsconfig.spec.json",
+            "setupFile": "libs/booking/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "booking-domain": {
+      "projectType": "library",
+      "root": "libs/booking/domain-flights",
+      "sourceRoot": "libs/booking/domain-flights/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/booking/domain-flights/tsconfig.lib.json",
+              "libs/booking/domain-flights/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/booking/domain-flights/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/booking/domain-flights/jest.config.js",
+            "tsConfig": "libs/booking/domain-flights/tsconfig.spec.json",
+            "setupFile": "libs/booking/domain-flights/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "boarding-feature": {
+      "projectType": "library",
+      "root": "libs/boarding/feature",
+      "sourceRoot": "libs/boarding/feature/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/boarding/feature/tsconfig.lib.json",
+              "libs/boarding/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/boarding/feature/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/boarding/feature/jest.config.js",
+            "tsConfig": "libs/boarding/feature/tsconfig.spec.json",
+            "setupFile": "libs/boarding/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "boarding-domain": {
+      "projectType": "library",
+      "root": "libs/boarding/domain-boarding",
+      "sourceRoot": "libs/boarding/domain-boarding/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/boarding/domain-boarding/tsconfig.lib.json",
+              "libs/boarding/domain-boarding/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/boarding/domain-boarding/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/boarding/domain-boarding/jest.config.js",
+            "tsConfig": "libs/boarding/domain-boarding/tsconfig.spec.json",
+            "setupFile": "libs/boarding/domain-boarding/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "shared-util-auth": {
+      "projectType": "library",
+      "root": "libs/shared/util-auth",
+      "sourceRoot": "libs/shared/util-auth/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util-auth/tsconfig.lib.json",
+              "libs/shared/util-auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/util-auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-auth/jest.config.js",
+            "tsConfig": "libs/shared/util-auth/tsconfig.spec.json",
+            "setupFile": "libs/shared/util-auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "shared-ui-common": {
+      "projectType": "library",
+      "root": "libs/shared/ui-common",
+      "sourceRoot": "libs/shared/ui-common/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui-common/tsconfig.lib.json",
+              "libs/shared/ui-common/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-common/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui-common/jest.config.js",
+            "tsConfig": "libs/shared/ui-common/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui-common/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "booking-api": {
+      "projectType": "library",
+      "root": "libs/booking/api",
+      "sourceRoot": "libs/booking/api/src",
+      "prefix": "nx-flights",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/booking/api/tsconfig.lib.json",
+              "libs/booking/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/booking/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/booking/api/jest.config.js",
+            "tsConfig": "libs/booking/api/tsconfig.spec.json",
+            "setupFile": "libs/booking/api/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "flight-app"
+}

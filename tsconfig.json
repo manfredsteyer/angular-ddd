@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nx-flights/booking/feature": ["libs/booking/feature/src/index.ts"],
+      "@nx-flights/booking/domain": ["libs/booking/domain/src/index.ts"],
+      "@nx-flights/boarding/feature": ["libs/boarding/feature/src/index.ts"],
+      "@nx-flights/boarding/domain": ["libs/boarding/domain/src/index.ts"],
+      "@nx-flights/shared/util-auth": ["libs/shared/util-auth/src/index.ts"],
+      "@nx-flights/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
+      "@nx-flights/booking/api": ["libs/booking/api/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

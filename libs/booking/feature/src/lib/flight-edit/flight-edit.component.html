@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="header">
+    <h1 class="title">Flight Edit</h1>
+  </div>
+
+
+  <div class="alert alert-warning" *ngIf="showWarning" style="margin:20px;">
+
+    <p>
+      You haven't saved your modifications. Do you really want to leave me?
+    </p>
+    <button class="btn btn-primary" (click)="decide(true)">Yes</button>
+    <button class="btn btn-primary" (click)="decide(false)">No</button>
+  </div>
+
+  <div class="content">
+    <p>Id: {{id}}</p>
+    <p>ShowDetails: {{showDetails}}</p>
+  </div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="header">
+    <h1 class="title">Welcome {{userName}}</h1>
+  </div>
+  <div class="content">
+
+    <div *ngIf="needsLogin" class="alert alert-warning">
+      You have been redirected to this page because you don't have the necessary
+      rights for the reqeusted action. Login with a respective user account!
+    </div>
+
+    <button (click)="login()" class="btn btn-default">Login</button>
+    <button (click)="logout()" class="btn btn-default">Logout</button>
+
+  </div>
+
+</div>
+
+<div>
+  &nbsp;
+</div>
+
+<div>
+  <!-- <custom-checkbox [value]="expertMode" (changed)="changed($event)" label="Expert Mode"></custom-checkbox>  
+  {{expertMode}} -->
+</div>
+
+

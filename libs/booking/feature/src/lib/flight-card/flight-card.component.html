@@ -1,0 +1,34 @@
+<div
+  class="card"
+  [ngStyle]="{'background-color': (selected) ?  'rgb(204, 197, 185)' : 'white' }">
+
+  <div class="header">
+    <h2 class="title">{{item.from}} - {{item.to}}</h2>
+  </div>
+  <div class="content">
+    <p>Flight-No.: #{{item.id}}</p>
+    <p>Date: {{item.date | date:'long'}}</p>
+
+    <p>
+      <button
+        class="btn btn-default"
+        *ngIf="!selected"
+        (click)="select()">
+        Select
+      </button>
+      <button
+        class="btn btn-default"
+        *ngIf="selected"
+        (click)="deselect()">
+        Remove
+      </button>
+
+      <a class="btn btn-default"
+        [routerLink]="['../flight-edit', item.id, {showDetails: true}]">
+        Edit
+      </a>
+
+    </p>
+
+  </div>
+</div>

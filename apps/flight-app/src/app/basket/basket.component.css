@@ -1,0 +1,23 @@
+.gray-bg {
+  opacity: 0.4;
+  background-color: black;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.flight-history {
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.flight-history-inside {
+  background-color: white;
+  margin: 100px auto;
+  width: 400px;
+}
